@@ -1,0 +1,22 @@
+---
+- name: install and start apache
+  hosts: all
+  become: true
+
+  tasks:
+    - name: install apache
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: start apache
+      service:
+        name: apache2
+        state: started
+
+    - name: restart nginx
+      service:
+        name: apache2
+        state: restarted
+        

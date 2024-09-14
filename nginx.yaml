@@ -1,0 +1,21 @@
+---
+- name: Install and run nginx
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Run Nginx
+      service:
+        name: nginx
+        state: started
+
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted
